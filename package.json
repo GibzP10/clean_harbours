@@ -1,0 +1,24 @@
+{
+  "name": "clean_harbours",
+  "version": "1.0.0",
+  "description": "An app that tries to manage urban waste disposal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GibzP10/clean_harbours.git"
+  },
+  "author": "High Flyers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GibzP10/clean_harbours/issues"
+  },
+  "homepage": "https://github.com/GibzP10/clean_harbours#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
