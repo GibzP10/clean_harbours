@@ -12,9 +12,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-  res.send('Hit Homepage');
-})
-
+require('./app/routes/auth')(app);
 
 app.listen(PORT, () => { console.log(`Server has begun at port ${PORT}`) });
