@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { MongoClient } = require('mongodb');
 
 const { dbUrl } = require('../config/db');
+const { createUser } = require('../model/user');
 
 const dbClient = new MongoClient(dbUrl);
 
@@ -19,10 +20,9 @@ async function signup(req, res) {
       return;
     }
 
-    const { acknowledged } = await users.insertOne({
-      username,
-      password: bcrypt.hashSync(password, 10),
-    })
+    const newUser = createUser({ username, password: bcrypt.hashSync(password, 10) })
+
+    const { acknowledged } = await users.insertOne(newUser)
 
     if (acknowledged) {
       res.status(201).json({ username });
