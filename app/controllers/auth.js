@@ -1,16 +1,16 @@
 const bcrypt = require('bcrypt');
 const { MongoClient } = require('mongodb');
 
-const { dbUrl } = require('../config/db');
+const { dbUrl, dbName } = require('../config/db');
 const { createUser } = require('../model/user');
 
-const dbClient = new MongoClient(dbUrl);
 
 async function signup(req, res) {
   const { username, password } = req.body;
 
   try {
-    const db = dbClient.db('clean_harbours');
+    var dbClient = new MongoClient(dbUrl);
+    const db = dbClient.db(dbName);
     const users = db.collection('users');
 
     const userInDb = await users.findOne({ username });
@@ -31,6 +31,8 @@ async function signup(req, res) {
   } catch (err) {
     console.log('Error occured: ', err);
     res.status(500);
+  } finally {
+    dbClient.close();
   }
 }
 
@@ -38,6 +40,7 @@ async function login(req, res) {
   const { username, password } = req.body;
 
   try {
+    var dbClient = new MongoClient(dbUrl);
     const db = dbClient.db('clean_harbours');
 
     const users = db.collection('users');
@@ -62,6 +65,8 @@ async function login(req, res) {
   } catch (err) {
     console.log('Error occured: ', err);
     res.status(500);
+  } finally {
+    dbClient.close();
   }
 }
 
