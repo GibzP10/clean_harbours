@@ -48,9 +48,11 @@ async function updateUserProfile(req, res) {
 
     const updatedUser = await users.updateOne({ username }, {
       $set: fieldsToBeUpdated
-    }, {})
+    })
 
-    if (!updatedUser.modifiedCount) {
+    console.log(updatedUser)
+
+    if (!updatedUser.acknowledged) {
       res.status(500);
       return;
     }
