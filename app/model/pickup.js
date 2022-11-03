@@ -7,7 +7,8 @@ function createPickups(pickupTypes, address) {
       type,
       vendor: pickupVendors[type].vendorName,
       time: new Date(
-        date.getUTCDate(),
+        // leap year and month days has to be considered
+        date.getUTCDate() + 1,
         date.getUTCMonth(),
         date.getUTCFullYear(),
         pickupVendors[type].pickupTime.hour,
