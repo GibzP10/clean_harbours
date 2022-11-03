@@ -20,6 +20,13 @@ const pickupVendors = {
       minute: 30,
     }
   },
+  donation: {
+    vendorName: 'sads_india',
+    pickupTime: {
+      hour: 08,
+      minute: 00,
+    }
+  }
 };
 
 module.exports = {

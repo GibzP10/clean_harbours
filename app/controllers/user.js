@@ -50,8 +50,6 @@ async function updateUserProfile(req, res) {
       $set: fieldsToBeUpdated
     })
 
-    console.log(updatedUser)
-
     if (!updatedUser.acknowledged) {
       res.status(500);
       return;
