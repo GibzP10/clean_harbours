@@ -21,7 +21,7 @@ function createDashboardData({ firstName, lastName, wasteData }) {
       {
         type: 'donation',
         itemsPickedUp: 10,
-        paymentRecieved: null,
+        paymentRecieved: 0,
       },
     ]
   }

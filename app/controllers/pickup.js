@@ -18,7 +18,13 @@ async function getPickups(req, res) {
 
     const { pickups } = user;
 
-    res.status(200).json({ pickups });
+    const currentTime = new Date().getTime();
+
+    const filteredPickups = pickups.filter(function getUpcomingPickups(pickup) {
+      return pickup.time > currentTime;
+    })
+
+    res.status(200).json({ pickups: filteredPickups });
   } catch (err) {
     console.log(err);
     res.status(500);
