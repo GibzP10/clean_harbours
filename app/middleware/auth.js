@@ -30,6 +30,23 @@ function authMiddleware(req, res, next) {
   }
 }
 
+function verifyAuthentication(req, res, next) {
+  const authToken = req.header('x-auth-token');
+  if (!authToken) {
+    res.status(401).json({ message: 'User not authenticated' });
+  }
+
+  try {
+    var { username } = jwt.verify(authToken, JWT_KEY);
+    req.username = username;
+    next();
+  } catch (err) {
+    console.log('Error occured: ', err);
+    res.status(403).json({ message: 'User session expired' });
+  }
+}
+
 module.exports = {
   authMiddleware,
+  verifyAuthentication,
 }
